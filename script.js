@@ -3220,6 +3220,9 @@ const mobileProjects =
 
 const mobileProjectsClose =
     document.getElementById("mobileProjectsClose");
+const mobileProjectsBack =
+    document.getElementById("mobileProjectsBack");
+    
 
 const mobileSelectedWorks =
     document.querySelector(
@@ -3289,6 +3292,30 @@ if (mobileProjectsClose) {
         e.stopPropagation();
 
         closeMobileProjects();
+
+    });
+
+}
+/* =========================================
+   BACK TO MOBILE MENU
+========================================= */
+
+if (mobileProjectsBack) {
+
+    mobileProjectsBack.addEventListener("click", function(e) {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        closeMobileProjects();
+
+        if (mobileMenu) {
+            mobileMenu.classList.add("open");
+        }
+
+        if (mobileMenuBackdrop) {
+            mobileMenuBackdrop.classList.add("open");
+        }
 
     });
 
@@ -3549,3 +3576,695 @@ function loadProjectImages(page) {
     });
 
 }
+/* =========================================================
+   SELECTED WORKS → MOBILE MENU
+   LEFT → RIGHT = BACK
+========================================================= */
+
+let selectedWorksStartX = 0;
+let selectedWorksStartY = 0;
+
+document.addEventListener("touchstart", function (e) {
+
+    if (window.innerWidth > 600) return;
+
+    if (
+        !mobileProjects ||
+        !mobileProjects.classList.contains("open")
+    ) {
+        return;
+    }
+
+    selectedWorksStartX = e.touches[0].clientX;
+    selectedWorksStartY = e.touches[0].clientY;
+
+}, { passive: true });
+
+
+document.addEventListener("touchend", function (e) {
+
+    if (window.innerWidth > 600) return;
+
+    if (
+        !mobileProjects ||
+        !mobileProjects.classList.contains("open")
+    ) {
+        return;
+    }
+
+    const deltaX =
+        e.changedTouches[0].clientX - selectedWorksStartX;
+
+    const deltaY =
+        e.changedTouches[0].clientY - selectedWorksStartY;
+
+    /* Sadece yatay ve yeterince uzun swipe */
+
+    if (
+        deltaX < 100 ||
+        Math.abs(deltaX) <= Math.abs(deltaY)
+    ) {
+        return;
+    }
+
+    /* Selected Works → Ana Menü */
+
+    closeMobileProjects();
+
+    if (mobileMenu) {
+        mobileMenu.classList.add("open");
+    }
+
+    if (mobileMenuBackdrop) {
+        mobileMenuBackdrop.classList.add("open");
+    }
+
+});
+/* =========================================================
+   MOBILE ABOUT
+========================================================= */
+
+const mobileAbout =
+    document.getElementById("mobileAbout");
+
+const mobileAboutBack =
+    document.getElementById("mobileAboutBack");
+
+const mobileAboutClose =
+    document.getElementById("mobileAboutClose");
+
+
+const mobileAboutLink =
+    document.querySelector(
+        '.mobile-menu a[href="#mobile-about"]'
+    );
+
+
+function openMobileAbout() {
+
+    if (!mobileAbout) return;
+
+    mobileMenu?.classList.remove("open");
+    mobileMenuBackdrop?.classList.remove("open");
+
+    mobileAbout.classList.add("open");
+
+}
+
+
+function closeMobileAbout() {
+
+    if (!mobileAbout) return;
+
+    mobileAbout.classList.remove("open");
+
+}
+
+
+if (mobileAboutLink) {
+
+    mobileAboutLink.addEventListener("click", function(e) {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        openMobileAbout();
+
+    });
+
+}
+
+
+if (mobileAboutBack) {
+
+    mobileAboutBack.addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+        closeMobileAbout();
+
+        mobileMenu?.classList.add("open");
+        mobileMenuBackdrop?.classList.add("open");
+
+    });
+
+}
+
+
+if (mobileAboutClose) {
+
+    mobileAboutClose.addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+        closeMobileAbout();
+
+    });
+
+}
+/* =========================================================
+   MOBILE ABOUT — SWIPE BACK
+   LEFT → RIGHT = BACK TO MENU
+========================================================= */
+
+let aboutSwipeStartX = 0;
+let aboutSwipeStartY = 0;
+
+document.addEventListener("touchstart", function (e) {
+
+    if (window.innerWidth > 600) return;
+
+    if (
+        !mobileAbout ||
+        !mobileAbout.classList.contains("open")
+    ) {
+        return;
+    }
+
+    aboutSwipeStartX = e.touches[0].clientX;
+    aboutSwipeStartY = e.touches[0].clientY;
+
+}, { passive: true });
+
+
+document.addEventListener("touchend", function (e) {
+
+    if (window.innerWidth > 600) return;
+
+    if (
+        !mobileAbout ||
+        !mobileAbout.classList.contains("open")
+    ) {
+        return;
+    }
+
+    const deltaX =
+        e.changedTouches[0].clientX - aboutSwipeStartX;
+
+    const deltaY =
+        e.changedTouches[0].clientY - aboutSwipeStartY;
+
+    /* Dikey kaydırmayı geri olarak algılama */
+    if (
+        deltaX < 100 ||
+        Math.abs(deltaX) <= Math.abs(deltaY)
+    ) {
+        return;
+    }
+
+    /* About Me → Ana Menü */
+
+    closeMobileAbout();
+
+    if (mobileMenu) {
+        mobileMenu.classList.add("open");
+    }
+
+    if (mobileMenuBackdrop) {
+        mobileMenuBackdrop.classList.add("open");
+    }
+
+});
+/* =========================================================
+   MOBILE RESUME
+========================================================= */
+
+const mobileResume =
+    document.getElementById("mobileResume");
+
+const mobileResumeContent =
+    document.getElementById("mobileResumeContent");
+
+const mobileResumeBack =
+    document.getElementById("mobileResumeBack");
+
+const mobileResumeClose =
+    document.getElementById("mobileResumeClose");
+
+
+let mobileResumeState = "home";
+let mobileResumeLanguage = null;
+
+
+/* OPEN MOBILE RESUME */
+
+function openMobileResume() {
+
+    if (!mobileResume) return;
+
+    mobileMenu?.classList.remove("open");
+    mobileMenuBackdrop?.classList.remove("open");
+
+    mobileResume.classList.add("open");
+
+    mobileResumeState = "home";
+    mobileResumeLanguage = null;
+
+    renderMobileResumeHome();
+
+}
+
+
+/* CLOSE MOBILE RESUME */
+
+function closeMobileResume() {
+
+    if (!mobileResume) return;
+
+    mobileResume.classList.remove("open");
+
+}
+
+
+/* MOBILE RESUME HOME */
+
+function renderMobileResumeHome() {
+
+    mobileResumeState = "home";
+    mobileResumeLanguage = null;
+
+    mobileResumeContent.innerHTML = `
+
+        <div class="mobile-resume-title">
+
+            <small>DOCUMENTS</small>
+
+            <h1>RESUME</h1>
+
+        </div>
+
+        <table class="mobile-resume-explorer">
+
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr
+                    class="mobile-resume-folder"
+                    id="mobileEnglishFolder"
+                >
+                    <td>📁 English</td>
+                    <td>File Folder</td>
+                </tr>
+
+                <tr
+                    class="mobile-resume-folder"
+                    id="mobileTurkishFolder"
+                >
+                    <td>📁 Türkçe</td>
+                    <td>File Folder</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    `;
+
+
+    document
+        .getElementById("mobileEnglishFolder")
+        ?.addEventListener("click", function () {
+
+            renderMobileEnglish();
+
+        });
+
+
+    document
+        .getElementById("mobileTurkishFolder")
+        ?.addEventListener("click", function () {
+
+            renderMobileTurkish();
+
+        });
+
+}
+
+
+/* ENGLISH */
+
+function renderMobileEnglish() {
+
+    mobileResumeState = "language";
+    mobileResumeLanguage = "english";
+
+    mobileResumeContent.innerHTML = `
+
+        <div class="mobile-resume-title">
+
+            <small>RESUME / ENGLISH</small>
+
+            <h1>ENGLISH</h1>
+
+        </div>
+
+        <table class="mobile-resume-explorer">
+
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr
+                    class="mobile-resume-folder"
+                    id="mobileResumePdf"
+                >
+                    <td>📄 Resume.pdf</td>
+                    <td>PDF File</td>
+                </tr>
+
+                <tr
+                    class="mobile-resume-folder"
+                    id="mobileResumePhotoPdf"
+                >
+                    <td>📄 Resume with Photo.pdf</td>
+                    <td>PDF File</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    `;
+
+
+    document
+        .getElementById("mobileResumePdf")
+        ?.addEventListener("click", function () {
+
+            openMobilePDF(
+                "assets/pdf/en/Resume.pdf",
+                "Resume.pdf"
+            );
+
+        });
+
+
+    document
+        .getElementById("mobileResumePhotoPdf")
+        ?.addEventListener("click", function () {
+
+            openMobilePDF(
+                "assets/pdf/en/Resume with Photo.pdf",
+                "Resume with Photo.pdf"
+            );
+
+        });
+
+}
+
+
+/* TÜRKÇE */
+
+function renderMobileTurkish() {
+
+    mobileResumeState = "language";
+    mobileResumeLanguage = "turkish";
+
+    mobileResumeContent.innerHTML = `
+
+        <div class="mobile-resume-title">
+
+            <small>RESUME / TÜRKÇE</small>
+
+            <h1>TÜRKÇE</h1>
+
+        </div>
+
+        <table class="mobile-resume-explorer">
+
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr
+                    class="mobile-resume-folder"
+                    id="mobileCvPdf"
+                >
+                    <td>📄 CV.pdf</td>
+                    <td>PDF File</td>
+                </tr>
+
+                <tr
+                    class="mobile-resume-folder"
+                    id="mobileCvPhotoPdf"
+                >
+                    <td>📄 CV with Photo.pdf</td>
+                    <td>PDF File</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    `;
+
+
+    document
+        .getElementById("mobileCvPdf")
+        ?.addEventListener("click", function () {
+
+            openMobilePDF(
+                "assets/pdf/tr/CV.pdf",
+                "CV.pdf"
+            );
+
+        });
+
+
+    document
+        .getElementById("mobileCvPhotoPdf")
+        ?.addEventListener("click", function () {
+
+            openMobilePDF(
+                "assets/pdf/tr/CV with Photo.pdf",
+                "CV with Photo.pdf"
+            );
+
+        });
+
+}
+
+
+/* PDF */
+
+function openMobilePDF(path, name) {
+
+    mobileResumeState = "pdf";
+
+    mobileResumeContent.innerHTML = `
+
+        <div class="mobile-resume-title">
+
+            <small>
+                RESUME / ${mobileResumeLanguage === "english"
+                    ? "ENGLISH"
+                    : "TÜRKÇE"}
+            </small>
+
+            <h1>${name}</h1>
+
+        </div>
+
+        <iframe
+            class="mobile-resume-pdf"
+            src="${path}"
+        ></iframe>
+
+    `;
+
+}
+
+
+/* BACK BUTTON */
+
+if (mobileResumeBack) {
+
+    mobileResumeBack.addEventListener("click", function (e) {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (mobileResumeState === "pdf") {
+
+            if (mobileResumeLanguage === "english") {
+                renderMobileEnglish();
+            } else {
+                renderMobileTurkish();
+            }
+
+            return;
+        }
+
+
+        if (mobileResumeState === "language") {
+
+            renderMobileResumeHome();
+
+            return;
+        }
+
+
+        if (mobileResumeState === "home") {
+
+            closeMobileResume();
+
+            mobileMenu?.classList.add("open");
+            mobileMenuBackdrop?.classList.add("open");
+
+        }
+
+    });
+
+}
+
+
+/* CLOSE */
+
+if (mobileResumeClose) {
+
+    mobileResumeClose.addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        closeMobileResume();
+
+    });
+
+}
+
+
+/* HAMBURGER → RESUME */
+
+const mobileResumeLink =
+    document.querySelector(
+        '.mobile-menu a[href="#mobile-resume"]'
+    );
+
+if (mobileResumeLink) {
+
+    mobileResumeLink.addEventListener("click", function (e) {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        openMobileResume();
+
+    });
+
+}
+/* =========================================================
+   MOBILE RESUME — SWIPE BACK
+========================================================= */
+
+let mobileResumeSwipeStartX = 0;
+let mobileResumeSwipeStartY = 0;
+
+document.addEventListener("touchstart", function (e) {
+
+    if (window.innerWidth > 600) return;
+
+    if (
+        !mobileResume ||
+        !mobileResume.classList.contains("open")
+    ) {
+        return;
+    }
+
+    mobileResumeSwipeStartX = e.touches[0].clientX;
+    mobileResumeSwipeStartY = e.touches[0].clientY;
+
+}, { passive: true });
+
+
+document.addEventListener("touchend", function (e) {
+
+    if (window.innerWidth > 600) return;
+
+    if (
+        !mobileResume ||
+        !mobileResume.classList.contains("open")
+    ) {
+        return;
+    }
+
+    const deltaX =
+        e.changedTouches[0].clientX -
+        mobileResumeSwipeStartX;
+
+    const deltaY =
+        e.changedTouches[0].clientY -
+        mobileResumeSwipeStartY;
+
+    /* Sadece belirgin yatay swipe */
+
+    if (
+        deltaX < 100 ||
+        Math.abs(deltaX) <= Math.abs(deltaY)
+    ) {
+        return;
+    }
+
+
+    /* PDF → Language */
+
+    if (mobileResumeState === "pdf") {
+
+        if (mobileResumeLanguage === "english") {
+            renderMobileEnglish();
+        } else {
+            renderMobileTurkish();
+        }
+
+        return;
+    }
+
+
+    /* Language → Resume Home */
+
+    if (mobileResumeState === "language") {
+
+        renderMobileResumeHome();
+
+        return;
+    }
+
+
+    /* Resume Home → Main Menu */
+
+    if (mobileResumeState === "home") {
+
+        closeMobileResume();
+
+        if (mobileMenu) {
+            mobileMenu.classList.add("open");
+        }
+
+        if (mobileMenuBackdrop) {
+            mobileMenuBackdrop.classList.add("open");
+        }
+
+    }
+
+});

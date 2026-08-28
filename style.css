@@ -55598,3 +55598,284 @@ body:has(#sketchbookLightbox.show) #spotifyLink {
     }
 
 }
+/* =========================================================
+   MOBILE ABOUT
+========================================================= */
+
+.mobile-about {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+
+    .mobile-about {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        background: #111;
+        color: white;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .mobile-about.open {
+        display: block;
+    }
+
+    .mobile-about-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+
+        height: 58px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 16px;
+
+        background: rgba(15,15,15,.92);
+        backdrop-filter: blur(12px);
+
+        border-bottom: 1px solid rgba(255,255,255,.12);
+
+        font-family: 'Pixelify Sans', sans-serif;
+        font-size: 13px;
+    }
+
+    .mobile-about-header button {
+        border: 0;
+        background: transparent;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .mobile-about-back {
+        font-size: 22px !important;
+    }
+
+    .mobile-about-content {
+        padding: 28px 18px 60px;
+    }
+
+    .mobile-about-intro {
+        padding: 30px 4px 45px;
+    }
+
+    .mobile-about-label {
+        font-size: 10px;
+        letter-spacing: 2px;
+        opacity: .55;
+        margin-bottom: 12px;
+    }
+
+    .mobile-about-intro h1 {
+        margin: 0;
+        font-family: 'Pixelify Sans', sans-serif;
+        font-size: 58px;
+        line-height: .9;
+    }
+
+    .mobile-about-intro p {
+        margin-top: 20px;
+        font-size: 14px;
+        line-height: 1.6;
+        opacity: .7;
+    }
+
+    .mobile-about-card {
+        margin-bottom: 65px;
+    }
+
+    .mobile-about-card h2 {
+        margin: 0;
+        font-family: 'Pixelify Sans', sans-serif;
+        font-size: 28px;
+        line-height: 1;
+    }
+
+    .mobile-about-small {
+        margin: 10px 0 20px;
+        font-size: 12px;
+        opacity: .55;
+    }
+
+    .mobile-about-card img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+    }
+
+    .mobile-about-caption {
+        margin-top: 8px;
+        font-size: 10px;
+        opacity: .5;
+    }
+
+    .mobile-about-text {
+        margin-top: 22px;
+        padding: 20px;
+
+        border: 1px solid rgba(255,255,255,.15);
+        background: rgba(255,255,255,.04);
+    }
+
+    .mobile-about-text p {
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.75;
+    }
+
+    .mobile-about-text strong {
+        color: #ff4d4d;
+        font-family: 'Pixelify Sans', sans-serif;
+        letter-spacing: 1px;
+    }
+
+    .mobile-about-final {
+        padding-bottom: 40px;
+    }
+
+}
+/* =========================================================
+   MOBILE RESUME
+========================================================= */
+
+.mobile-resume {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+
+    .mobile-resume {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+
+        background: #111;
+        color: white;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .mobile-resume.open {
+        display: block;
+    }
+
+    .mobile-resume-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+
+        height: 58px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 16px;
+
+        background: rgba(15,15,15,.94);
+        backdrop-filter: blur(12px);
+
+        border-bottom: 1px solid rgba(255,255,255,.12);
+
+        font-family: 'Pixelify Sans', sans-serif;
+        font-size: 13px;
+    }
+
+    .mobile-resume-header button {
+        width: 38px;
+        height: 38px;
+
+        border: 0;
+        background: transparent;
+
+        color: white;
+
+        font-size: 21px;
+
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mobile-resume-content {
+        padding: 24px 18px 60px;
+    }
+
+    /* Resume explorer */
+
+    .mobile-resume-explorer {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+    }
+
+    .mobile-resume-explorer th {
+        text-align: left;
+        padding: 10px 8px;
+
+        font-family: 'Pixelify Sans', sans-serif;
+
+        font-size: 10px;
+        letter-spacing: 1px;
+
+        opacity: .5;
+
+        border-bottom: 1px solid rgba(255,255,255,.15);
+    }
+
+    .mobile-resume-explorer td {
+        padding: 16px 8px;
+
+        border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .mobile-resume-folder {
+        cursor: pointer;
+    }
+
+    .mobile-resume-folder:active {
+        background: rgba(255,255,255,.08);
+    }
+
+    .mobile-resume-title {
+        margin-bottom: 28px;
+    }
+
+    .mobile-resume-title small {
+        display: block;
+
+        margin-bottom: 8px;
+
+        font-size: 9px;
+        letter-spacing: 2px;
+
+        opacity: .45;
+    }
+
+    .mobile-resume-title h1 {
+        margin: 0;
+
+        font-family: 'Pixelify Sans', sans-serif;
+
+        font-size: 42px;
+        line-height: 1;
+    }
+
+    .mobile-resume-pdf {
+        width: 100%;
+        height: calc(100vh - 90px);
+
+        border: none;
+        background: white;
+    }
+
+}
