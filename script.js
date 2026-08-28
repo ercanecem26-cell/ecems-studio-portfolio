@@ -3489,3 +3489,33 @@ document.addEventListener("touchend", function (e) {
     }
 
 });
+/* =========================================================
+   PROJECT VIDEOS — LOAD ONLY WHEN PROJECT OPENS
+========================================================= */
+
+function prepareProjectVideos(projectPage) {
+
+    if (!projectPage) return;
+
+    const videos =
+        projectPage.querySelectorAll("video");
+
+    videos.forEach(video => {
+
+        video.preload = "metadata";
+
+        /*
+         * Proje açıldığında autoplay olan videoları
+         * yeniden başlat.
+         */
+        if (
+            video.dataset.autoPlay === "true"
+        ) {
+
+            video.play().catch(() => {});
+
+        }
+
+    });
+
+}
