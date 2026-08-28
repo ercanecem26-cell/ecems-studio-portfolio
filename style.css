@@ -55879,3 +55879,226 @@ body:has(#sketchbookLightbox.show) #spotifyLink {
     }
 
 }
+/* =========================================================
+   MOBILE CONTACT
+========================================================= */
+
+.mobile-contact {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+
+    .mobile-contact {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+
+        background: #111;
+        color: white;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .mobile-contact.open {
+        display: block;
+    }
+
+    .mobile-contact-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+
+        height: 58px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 16px;
+
+        background: rgba(15,15,15,.94);
+        backdrop-filter: blur(12px);
+
+        border-bottom: 1px solid rgba(255,255,255,.12);
+
+        font-family: 'Pixelify Sans', sans-serif;
+        font-size: 13px;
+    }
+
+    .mobile-contact-header button {
+        width: 38px;
+        height: 38px;
+
+        border: 0;
+        background: transparent;
+
+        color: white;
+
+        font-size: 21px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        cursor: pointer;
+    }
+
+    .mobile-contact-content {
+        padding: 32px 18px 60px;
+    }
+
+    .mobile-contact-intro {
+        margin-bottom: 35px;
+    }
+
+    .mobile-contact-intro > span {
+        display: block;
+
+        margin-bottom: 10px;
+
+        font-size: 10px;
+        letter-spacing: 2px;
+
+        opacity: .5;
+    }
+
+    .mobile-contact-intro h1 {
+        margin: 0;
+
+        font-family: 'Pixelify Sans', sans-serif;
+
+        font-size: 38px;
+        line-height: 1;
+    }
+
+    .mobile-contact-intro p {
+        margin: 10px 0 0;
+
+        font-size: 13px;
+
+        opacity: .6;
+    }
+
+    .mobile-contact-card {
+        position: relative;
+
+        padding: 22px;
+
+        border: 1px solid rgba(255,255,255,.14);
+
+        background: rgba(255,255,255,.04);
+
+        margin-bottom: 16px;
+    }
+
+    .mobile-contact-card.email-card {
+        min-height: 180px;
+    }
+
+    .mobile-contact-icon {
+        width: 32px;
+        height: 32px;
+
+        object-fit: contain;
+
+        margin-bottom: 18px;
+    }
+
+    .mobile-contact-card-info {
+        margin-bottom: 22px;
+    }
+
+    .mobile-contact-label {
+        display: block;
+
+        margin-bottom: 7px;
+
+        font-size: 9px;
+        letter-spacing: 2px;
+
+        opacity: .45;
+    }
+
+    .mobile-contact-card h2 {
+        margin: 0;
+
+        font-family: 'Pixelify Sans', sans-serif;
+
+        font-size: 18px;
+        line-height: 1.2;
+    }
+
+    .mobile-contact-buttons {
+        display: flex;
+        gap: 8px;
+    }
+
+    .mobile-contact-buttons button,
+    .mobile-contact-buttons a,
+    .mobile-contact-card > a {
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        min-height: 38px;
+
+        padding: 0 14px;
+
+        border: 1px solid rgba(255,255,255,.18);
+
+        background: rgba(255,255,255,.06);
+
+        color: white;
+
+        text-decoration: none;
+
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+
+        cursor: pointer;
+    }
+
+    .mobile-contact-buttons button:active,
+    .mobile-contact-buttons a:active,
+    .mobile-contact-card > a:active {
+        background: rgba(255,255,255,.14);
+    }
+
+    .mobile-contact-grid {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 12px;
+    }
+
+    .mobile-contact-grid .mobile-contact-card {
+        min-height: 180px;
+
+        margin-bottom: 0;
+
+        padding: 18px;
+    }
+
+    .mobile-contact-grid .mobile-contact-icon {
+        width: 28px;
+        height: 28px;
+
+        margin-bottom: 25px;
+    }
+
+    .mobile-contact-grid h2 {
+        font-size: 16px;
+
+        margin-bottom: 20px;
+    }
+
+    .mobile-contact-grid > .mobile-contact-card > a {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+}

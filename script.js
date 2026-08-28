@@ -4268,3 +4268,229 @@ document.addEventListener("touchend", function (e) {
     }
 
 });
+/* =========================================================
+   MOBILE CONTACT
+========================================================= */
+
+const mobileContact =
+    document.getElementById("mobileContact");
+
+const mobileContactBack =
+    document.getElementById("mobileContactBack");
+
+const mobileContactClose =
+    document.getElementById("mobileContactClose");
+
+const mobileCopyMail =
+    document.getElementById("mobileCopyMail");
+
+
+/* CONTACT'I AÇ */
+
+function openMobileContact() {
+
+    if (!mobileContact) return;
+
+    mobileMenu?.classList.remove("open");
+    mobileMenuBackdrop?.classList.remove("open");
+
+    mobileContact.classList.add("open");
+
+}
+
+
+/* CONTACT'I KAPAT */
+
+function closeMobileContact() {
+
+    if (!mobileContact) return;
+
+    mobileContact.classList.remove("open");
+
+}
+
+
+/* BACK → ANA MENÜ */
+
+if (mobileContactBack) {
+
+    mobileContactBack.addEventListener("click", function (e) {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        closeMobileContact();
+
+        if (mobileMenu) {
+            mobileMenu.classList.add("open");
+        }
+
+        if (mobileMenuBackdrop) {
+            mobileMenuBackdrop.classList.add("open");
+        }
+
+    });
+
+}
+
+
+/* X → KAPAT */
+
+if (mobileContactClose) {
+
+    mobileContactClose.addEventListener("click", function (e) {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        closeMobileContact();
+
+    });
+
+}
+
+
+/* COPY EMAIL */
+
+if (mobileCopyMail) {
+
+    mobileCopyMail.addEventListener("click", async function () {
+
+        try {
+
+            await navigator.clipboard.writeText(
+                "ecemercan123@gmail.com"
+            );
+
+            const originalText = this.textContent;
+
+            this.textContent = "Copied ✓";
+
+            setTimeout(() => {
+                this.textContent = originalText;
+            }, 1500);
+
+        } catch (error) {
+
+            console.log("Email could not be copied.");
+
+        }
+
+    });
+
+}
+
+
+/* HAMBURGER → CONTACT */
+
+const mobileContactLink =
+    document.querySelector(
+        '.mobile-menu a[href="#mobile-contact"]'
+    );
+
+if (mobileContactLink) {
+
+    mobileContactLink.addEventListener("click", function (e) {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        openMobileContact();
+
+    });
+
+}
+
+
+/* =========================================================
+   MOBILE CONTACT — SWIPE BACK
+========================================================= */
+
+let mobileContactSwipeStartX = 0;
+let mobileContactSwipeStartY = 0;
+
+
+document.addEventListener("touchstart", function (e) {
+
+    if (window.innerWidth > 600) return;
+
+    if (
+        !mobileContact ||
+        !mobileContact.classList.contains("open")
+    ) {
+        return;
+    }
+
+    mobileContactSwipeStartX =
+        e.touches[0].clientX;
+
+    mobileContactSwipeStartY =
+        e.touches[0].clientY;
+
+}, { passive: true });
+
+
+document.addEventListener("touchend", function (e) {
+
+    if (window.innerWidth > 600) return;
+
+    if (
+        !mobileContact ||
+        !mobileContact.classList.contains("open")
+    ) {
+        return;
+    }
+
+    const deltaX =
+        e.changedTouches[0].clientX -
+        mobileContactSwipeStartX;
+
+    const deltaY =
+        e.changedTouches[0].clientY -
+        mobileContactSwipeStartY;
+
+
+    /* Sadece soldan sağa belirgin swipe */
+
+    if (
+        deltaX < 100 ||
+        Math.abs(deltaX) <= Math.abs(deltaY)
+    ) {
+        return;
+    }
+
+
+    /* CONTACT → ANA MENÜ */
+
+    closeMobileContact();
+
+    if (mobileMenu) {
+        mobileMenu.classList.add("open");
+    }
+
+    if (mobileMenuBackdrop) {
+        mobileMenuBackdrop.classList.add("open");
+    }
+
+});
+/* =========================================================
+   MOBILE PROJECT CONTACT BUTTONS
+   PC'YE DOKUNMAZ
+========================================================= */
+
+document.addEventListener("click", function (e) {
+
+    if (window.innerWidth > 600) return;
+
+    const button = e.target.closest(
+        "#archiveContactBtn, .kor-archive-link, .playreal-contact-btn"
+    );
+
+    if (!button) return;
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    openMobileContact();
+
+}, true);
