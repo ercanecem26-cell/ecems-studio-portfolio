@@ -1232,6 +1232,11 @@ if (sceneBitesProject && sceneBitesPage) {
         /* Scene Bites sayfasını aç */
 
         sceneBitesPage.classList.remove("hidden");
+        const figmaFrame = sceneBitesPage.querySelector("iframe[data-src]");
+
+if (figmaFrame && !figmaFrame.src) {
+    figmaFrame.src = figmaFrame.dataset.src;
+}
 
 
         /* Geri butonunu göster */
