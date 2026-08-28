@@ -55576,3 +55576,25 @@ body:has(#sketchbookLightbox.show) #spotifyLink {
     }
 
 }
+/* =========================================================
+   MOBILE WELCOME — MUSIC CARD BEHIND BLUR
+========================================================= */
+
+@media screen and (max-width: 600px) {
+
+    body:has(#welcomeScreen) #musicInfo {
+        z-index: 0 !important;
+        opacity: 0.25 !important;
+        filter: blur(5px) brightness(0.65) !important;
+        pointer-events: none !important;
+    }
+
+    body:has(#welcomeScreen) .welcome-overlay {
+        z-index: 1 !important;
+    }
+
+    body:has(#welcomeScreen) .welcome-box {
+        z-index: 2 !important;
+    }
+
+}
