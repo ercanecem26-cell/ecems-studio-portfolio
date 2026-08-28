@@ -1006,6 +1006,7 @@ journiProject.addEventListener("click",()=>{
     projectsExplorer.classList.add("hidden");
 
     journiPage.classList.remove("hidden");
+    loadProjectImages(journiPage);
 
     projectsBackBtn.classList.remove("hidden");
 
@@ -1275,6 +1276,7 @@ if (nikeProject && nikePage) {
 
         /* Nike sayfasını aç */
         nikePage.classList.remove("hidden");
+        loadProjectImages(nikePage);
 
         /* Back butonunu göster */
         projectsBackBtn.classList.remove("hidden");
@@ -3515,6 +3517,29 @@ function prepareProjectVideos(projectPage) {
             video.play().catch(() => {});
 
         }
+
+    });
+
+}
+/* =========================================================
+   PROJECT IMAGE LOADER
+   Keep hidden project images from loading on startup.
+   Load them immediately when the project is opened.
+========================================================= */
+
+function loadProjectImages(page) {
+
+    if (!page) return;
+
+    const images = page.querySelectorAll("img[data-deferred-src]");
+
+    images.forEach(img => {
+
+        if (!img.src || img.src === window.location.href) {
+            img.src = img.dataset.deferredSrc;
+        }
+
+        img.loading = "eager";
 
     });
 
