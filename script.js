@@ -3197,8 +3197,14 @@ if (mobileMenuBtn && mobileMenu) {
 if (mobileMenuClose) {
 
     mobileMenuClose.addEventListener("click", function () {
+
         mobileMenu.classList.remove("open");
         mobileMenuBackdrop?.classList.remove("open");
+
+        if (projectsWindow) {
+            projectsWindow.classList.add("hidden");
+        }
+
     });
 
 }
@@ -4478,12 +4484,32 @@ document.addEventListener("touchend", function (e) {
    PC'YE DOKUNMAZ
 ========================================================= */
 
+document.addEventListener("click", function (e) { 
+ 
+    if (window.innerWidth > 600) return; 
+ 
+    const button = e.target.closest(
+    "#archiveContactBtn, .kor-archive-link, .playreal-contact-btn, .serene-contact-btn, .scenebites-connect-button"
+);
+ 
+    if (!button) return; 
+ 
+    e.preventDefault(); 
+    e.stopImmediatePropagation(); 
+ 
+    openMobileContact(); 
+ 
+}, true);
+/* =========================================================
+   ALL PROJECT CONTACT BUTTONS — MOBILE
+========================================================= */
+
 document.addEventListener("click", function (e) {
 
     if (window.innerWidth > 600) return;
 
     const button = e.target.closest(
-        "#archiveContactBtn, .kor-archive-link, .playreal-contact-btn"
+        ".dustiny-contact-button, .human-dog-contact button, .serene-contact-btn"
     );
 
     if (!button) return;
