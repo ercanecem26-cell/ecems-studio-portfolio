@@ -1545,6 +1545,10 @@ dots.forEach(dot=>{
 JOURNI VIDEO AUTOPLAY
 ========================================*/
 
+/*========================================
+JOURNI VIDEO AUTOPLAY
+========================================*/
+
 const journiVideo = document.getElementById("journiVideo");
 
 if (journiVideo) {
@@ -1555,7 +1559,12 @@ if (journiVideo) {
 
             if (entry.isIntersecting) {
 
-                journiVideo.play();
+                /* Video ilk kez görünüyorsa yükle */
+                if (journiVideo.readyState === 0) {
+                    journiVideo.load();
+                }
+
+                journiVideo.play().catch(() => {});
 
             } else {
 
@@ -1566,13 +1575,10 @@ if (journiVideo) {
         });
 
     }, {
-
-        threshold: 0.6
-
+        threshold: 0.25
     });
 
     observer.observe(journiVideo);
-
 }
 /*========================================
 VIDEO SOUND
