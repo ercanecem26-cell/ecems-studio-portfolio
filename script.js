@@ -3598,13 +3598,21 @@ function loadProjectImages(page) {
 
     const images = page.querySelectorAll("img[data-deferred-src]");
 
-    images.forEach(img => {
+    images.forEach((img, index) => {
 
-        if (!img.src || img.src === window.location.href) {
-            img.src = img.dataset.deferredSrc;
+        if (index < 3) {
+
+            if (!img.src || img.src === window.location.href) {
+                img.src = img.dataset.deferredSrc;
+            }
+
+            img.loading = "eager";
+
+        } else {
+
+            img.loading = "lazy";
+
         }
-
-        img.loading = "eager";
 
     });
 
