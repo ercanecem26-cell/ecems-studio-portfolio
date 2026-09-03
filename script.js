@@ -1781,6 +1781,27 @@ if(korTeamVideo && korSoundBtn){
     });
 
 }
+if (korTeamVideo) {
+
+    const korVideoObserver = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+                korTeamVideo.play().catch(() => {});
+            } else {
+                korTeamVideo.pause();
+            }
+
+        });
+
+    }, {
+        threshold: 0.35
+    });
+
+    korVideoObserver.observe(korTeamVideo);
+
+}
 /* ==================================================
    KOR — SMOOTH UNIT SCROLL
 ================================================== */
