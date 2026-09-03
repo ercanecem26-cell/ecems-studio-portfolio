@@ -1639,7 +1639,7 @@ document.querySelectorAll(
 
     img.addEventListener("click",()=>{
 
-        lightboxImg.src = img.src;
+        lightboxImg.src = img.dataset.deferredSrc || img.src;
 
         lightbox.classList.add("show");
 
