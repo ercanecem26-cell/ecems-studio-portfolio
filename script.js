@@ -1639,7 +1639,7 @@ document.querySelectorAll(
 
     img.addEventListener("click",()=>{
 
-        lightboxImg.src = img.dataset.deferredSrc || img.src;
+        lightboxImg.src = img.src;
 
         lightbox.classList.add("show");
 
@@ -3598,21 +3598,13 @@ function loadProjectImages(page) {
 
     const images = page.querySelectorAll("img[data-deferred-src]");
 
-    images.forEach((img, index) => {
+    images.forEach(img => {
 
-        if (index < 3) {
-
-            if (!img.src || img.src === window.location.href) {
-                img.src = img.dataset.deferredSrc;
-            }
-
-            img.loading = "eager";
-
-        } else {
-
-            img.loading = "lazy";
-
+        if (!img.src || img.src === window.location.href) {
+            img.src = img.dataset.deferredSrc;
         }
+
+        img.loading = "eager";
 
     });
 
