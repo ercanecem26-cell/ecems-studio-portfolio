@@ -1310,6 +1310,11 @@ korProject.addEventListener("click",()=>{
     projectsExplorer.classList.add("hidden");
 
     korPage.classList.remove("hidden");
+    if (window.innerWidth <= 600 && korTeamVideo) {
+    setTimeout(() => {
+        korTeamVideo.play().catch(() => {});
+    }, 200);
+}
 
     projectsBackBtn.classList.remove("hidden");
 
